@@ -1,7 +1,7 @@
 use actix_web::{HttpResponse, Responder, web};
 use askama::Template;
 use crate::models::app_state::AppState;
-use crate::models::ui::{LoginTemplate, RegisterTemplate, DashboardTemplate, NewUserForm};
+use crate::models::ui::{LoginTemplate, RegisterTemplate, DashboardTemplate, HomepageTemplate,NewUserForm};
 use crate::models::ui::{LoginForm};
 use bcrypt::{hash, DEFAULT_COST};
 use crate::db_operations::users::add_user;
@@ -17,14 +17,14 @@ async fn handle_error(error: &str) -> HttpResponse {
     HttpResponse::Ok().content_type("text/html").body(template.render().unwrap())
 }
 
-// pub async fn home_page(error: Option<String>) -> impl Responder {
-//
-//     let template = HomepageTemplate { error };
-//     HttpResponse::Ok().content_type(
-//         "text/html"
-//     ).body(template.render().unwrap())
-//
-// }
+pub async fn home_page(error: Option<String>) -> impl Responder {
+
+    let template = HomepageTemplate { error };
+    HttpResponse::Ok().content_type(
+        "text/html"
+    ).body(template.render().unwrap())
+
+}
 pub async fn login_page(error: Option<String>) -> impl Responder {
 
     let template = LoginTemplate { error };
@@ -34,6 +34,7 @@ pub async fn login_page(error: Option<String>) -> impl Responder {
     ).body(template.render().unwrap())
 
 }
+
 
 pub async fn register_page(error: Option<String>) -> impl Responder {
 

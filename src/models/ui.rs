@@ -3,11 +3,11 @@ use diesel::{Insertable, Queryable, Selectable};
 use serde::{Deserialize, Serialize};
 use crate::schema::users::{ password};
 
-// #[derive(Template)]
-// #[template(path="index.html")]
-// pub struct HomepageTemplate {
-//     pub error: Option<String>
-// }
+#[derive(Template)]
+#[template(path="index.html")]
+pub struct HomepageTemplate {
+    pub error: Option<String>
+}
 
 #[derive(Template)]
 #[template(path="login.html")]
@@ -27,6 +27,7 @@ pub struct RegisterTemplate {
 pub struct DashboardTemplate {
     pub error: Option<String>
 }
+
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct NewUserForm {

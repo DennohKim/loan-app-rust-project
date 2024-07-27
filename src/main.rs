@@ -8,9 +8,11 @@ use std::sync::Mutex;
 use actix_web::{web, App, HttpServer, Responder, HttpResponse};
 use askama::filters::format;
 use dotenvy::dotenv;
+use actix_files as fs;
+
 
 use models::app_state::AppState;
-use controllers::users::{ login_page, register_page, login_user, register_user };
+use controllers::users::{ login_page, register_page, login_user, register_user, home_page };
 use db_operations::db::establish_connection;
 
 #[actix_web::main]
@@ -29,7 +31,8 @@ async fn main() -> std::io::Result<()> {
             });
 
             App::new().app_data(app_state.clone())
-                // .route("/", web::get().to(home_page))
+                .service(fs::Files::new("/static", "./static").show_files_listing())
+                .route("/", web::get().to(home_page))
                 .route("/login", web::get().to(login_page))
                 .route("/login", web::post().to(login_user))
                 .route("/register", web::get().to(register_page))
