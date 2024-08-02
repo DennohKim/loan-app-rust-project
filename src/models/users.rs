@@ -20,15 +20,31 @@ pub struct Users {
     pub updated_at: chrono::NaiveDateTime,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
+pub struct NewUserForm {
+    pub username:  String,
+    pub first_name:  String,
+    pub last_name: String,
+    pub email: String,
+    pub password: String,
+    pub confirm_password: String,
+    pub date_of_birth: chrono::NaiveDate,
+    pub address: String,
+    
+}
 #[derive(Queryable, Selectable, Debug, Insertable)]
 #[diesel(table_name = crate::schema::users)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 
 pub struct NewUser {
 
-    pub first_name: String,
+    pub username:  String,
+    pub first_name:  String,
     pub last_name: String,
     pub email: String,
-
+    pub password: String,
+    pub confirm_password: String,
+    pub date_of_birth: chrono::NaiveDate,
+    pub address: String,
 
 }

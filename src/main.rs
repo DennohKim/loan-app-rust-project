@@ -5,7 +5,9 @@ mod schema;
 
 use std::env;
 use std::sync::Mutex;
-use actix_web::{web, App, HttpServer, Responder, HttpResponse};
+use actix_session::{SessionMiddleware, storage::CookieSessionStore};
+
+use actix_web::{cookie::{SameSite, Key},web, App, HttpServer, Responder, HttpResponse};
 use askama::filters::format;
 use dotenvy::dotenv;
 use actix_files as fs;

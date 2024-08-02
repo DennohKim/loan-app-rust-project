@@ -1,7 +1,6 @@
 use askama::Template;
 use diesel::{Insertable, Queryable, Selectable};
 use serde::{Deserialize, Serialize};
-use crate::schema::users::{ password};
 
 #[derive(Template)]
 #[template(path="index.html")]
@@ -11,10 +10,10 @@ pub struct HomepageTemplate {
 
 #[derive(Template)]
 #[template(path="login.html")]
-pub struct LoginTemplate {
-    pub error: Option<String>
+pub struct LoginTemplate{
+    pub(crate) error: Option<String>,
+    pub(crate) message: Option<String>
 }
-
 
 #[derive(Template)]
 #[template(path="register.html")]
@@ -29,14 +28,7 @@ pub struct DashboardTemplate {
 }
 
 
-#[derive(Serialize, Deserialize, Debug)]
-pub struct NewUserForm {
-    pub name:  String,
-    pub email: String,
-    pub password: String,
 
-
-}
 
 #[derive(Deserialize, Serialize)]
 pub struct LoginForm {
