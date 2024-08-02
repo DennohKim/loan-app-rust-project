@@ -1,58 +1,34 @@
-use askama::Error;
-use crate::models::users::{ Users};
+use diesel::PgConnection;
 use diesel::prelude::*;
 use crate::models::users::NewUser;
+use crate::models::users::Users;
+use crate::schema::users::dsl::*;
 
-pub fn get_all_users(connection: &mut PgConnection) -> Vec<Users> {
-    use crate::schema::users::dsl::*;
-
-    let mut all_users: Vec<Users> = Vec::new();
-    let results = users
-        .select(Users::as_select())
-        .load(connection);
-    match results {
-        Ok(data) => {
-            for user in data.into_iter() {
-                all_users.push(user)
-            }
-
-            println!("todo")
-        }
-        Err(e) => println!("Error occurred {:?}", e)
-    }
-
-    return all_users;
+pub fn get_user_by_id(connection: &mut PgConnection, user_id: i32) -> Option<Users> {
+    users.filter(id.eq(user_id)).first::<Users>(connection).optional().unwrap_or_else(|err| {
+        println!("Error occurred: {:?}", err);
+        None
+    })
 }
-
-pub fn get_a_user_by_mail(connection: &mut PgConnection, user_email: String) -> Option<Users> {
-    use crate::schema::users::dsl::*;
-
-    // let results = users
-    //     .filter(email.eq(user_email))
-    //     .limit(5)
-    //     .select(Users::as_select())
-    //     .load(connection);
-    // match results {
-    //     Ok(data) => {
-    //         println!("User found");
-    //         data
-    //     }
-    //     Err(e) => {
-    //         println!("Error occurred {:?}", e);
-    //         None
-    //     }
-    // }
-
+pub fn get_user_by_email(connection: &mut PgConnection, user_email: String) -> Option<Users> {
     users.filter(email.eq(user_email)).first::<Users>(connection).optional().unwrap_or_else(|err| {
-        println!("Error ...");
+        println!("Error occured: {:?}", err);
         None
     })
 }
 
+pub fn get_user_by_username(connection: &mut PgConnection, user_name: String) -> Option<Users> {
+    users.filter(username.eq(user_name)).first::<Users>(connection).optional().unwrap_or_else(|err| {
+        println!("Error occured: {:?}", err);
+        None
+    })
+}
+
+
 pub fn add_user(new_user: NewUser, connection: &mut PgConnection) -> Result<Users, diesel::result::Error> {
     diesel::insert_into(crate::schema::users::table)
-        .values(&new_user)
-        // .returning(Post::as_returning())
-        .get_result::<Users>(connection)
+       .values(&new_user)
+       // .returning(Post::as_returning())
+       .get_result::<Users>(connection)
 
 }

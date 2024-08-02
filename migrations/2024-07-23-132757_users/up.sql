@@ -9,8 +9,6 @@ CREATE TABLE users (
     date_of_birth DATE NOT NULL,
     address VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
-    confirm_password VARCHAR NOT NULL,
-    loan_id INTEGER NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

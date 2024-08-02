@@ -6,26 +6,32 @@
     <link rel="stylesheet" href="/static/css/style.css" />
   </head>
   <body>
+    {% if let Some(error_message) = error %}
+    <p class="error">{{ error_message }}</p>
+    {% endif %}
+
     <div class="login-page">
       <div class="form">
-        <form class="login-form">
+        <form method="post" action="/register" >
           <!-- TODO: Add form validation inputs -->
-          <div>
-            <input type="text" placeholder="username" />
-            <input type="text" placeholder="first name" />
-            <input type="text" placeholder="last name" />
+          <div class="login-grid-2-cols">
+            <input type="text" name="username" id="username" placeholder="username" />
+            <input type="text" name="first_name" id="first_name" placeholder="first name" />
+            <input type="text" name="last_name" id="last_name" placeholder="last name" />
           </div>
 
-          <div>
-            <input type="email" placeholder="email" />
+          <div class="login-grid-2-cols">
+            <input type="email" name="email" id="email" placeholder="email" />
+            <input type="text" name="address" id="address" placeholder="physical address" />
+            <input type="date" id="date_of_birth"  name="date_of_birth" />
           </div>
 
-          <div>
-            <input type="password" placeholder="password" />
-            <input type="password" placeholder="confirm password" />
+          <div class="login-grid-2-cols">
+            <input type="password" name="password" id="password" placeholder="password" />
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm password" />
           </div>
 
-          <button>Create account</button>
+          <button type="submit">Create account</button>
           <p class="message">
             Already have an account? <a href="/login">Sign in</a>
           </p>

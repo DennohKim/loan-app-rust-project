@@ -5,6 +5,8 @@ diesel::table! {
         id -> Int4,
         user_id -> Int4,
         term_months -> Int4,
+        #[max_length = 255]
+        status -> Varchar,
         amount -> Numeric,
         interest_rate -> Numeric,
         start_date -> Date,
@@ -24,8 +26,6 @@ diesel::table! {
         date_of_birth -> Date,
         address -> Varchar,
         password -> Varchar,
-        confirm_password -> Varchar,
-        loan_id -> Int4,
         created_at -> Timestamp,
         updated_at -> Timestamp,
     }

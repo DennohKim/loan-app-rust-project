@@ -14,8 +14,6 @@ pub struct Users {
     pub date_of_birth: chrono::NaiveDate,
     pub address: String,
     pub password: String,
-    pub confirm_password: String,
-    pub loan_id: i32,
     pub created_at: chrono::NaiveDateTime,
     pub updated_at: chrono::NaiveDateTime,
 }
@@ -27,7 +25,6 @@ pub struct NewUserForm {
     pub last_name: String,
     pub email: String,
     pub password: String,
-    pub confirm_password: String,
     pub date_of_birth: chrono::NaiveDate,
     pub address: String,
     
@@ -43,7 +40,6 @@ pub struct NewUser {
     pub last_name: String,
     pub email: String,
     pub password: String,
-    pub confirm_password: String,
     pub date_of_birth: chrono::NaiveDate,
     pub address: String,
 

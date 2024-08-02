@@ -12,6 +12,7 @@ pub struct Loans {
     pub user_id: i32,
     pub term_months: i32,
     pub amount: BigDecimal,
+    pub status: String,
     pub interest_rate: BigDecimal,
     pub start_date: chrono::NaiveDate,
     pub end_date: chrono::NaiveDate,

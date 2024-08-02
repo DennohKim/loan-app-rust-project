@@ -12,7 +12,6 @@ pub struct HomepageTemplate {
 #[template(path="login.html")]
 pub struct LoginTemplate{
     pub(crate) error: Option<String>,
-    pub(crate) message: Option<String>
 }
 
 #[derive(Template)]
@@ -32,7 +31,7 @@ pub struct DashboardTemplate {
 
 #[derive(Deserialize, Serialize)]
 pub struct LoginForm {
-    pub  email: String,
+    pub  username: String,
     pub  password: String,
 }
 

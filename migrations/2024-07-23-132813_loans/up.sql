@@ -3,6 +3,7 @@ CREATE TABLE loans (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     term_months INTEGER NOT NULL,
+    status VARCHAR(255) NOT NULL,
     amount DECIMAL NOT NULL,
     interest_rate DECIMAL NOT NULL,
     start_date DATE NOT NULL,

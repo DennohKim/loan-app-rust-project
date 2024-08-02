@@ -20,7 +20,7 @@ use db_operations::db::establish_connection;
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     dotenv().ok();
-
+    let secret_key = Key::generate();
     let host = env::var("HOST").expect("HOST not found");
     let port = env::var("PORT").expect("PORT not found");
     let host_port = format!("{}:{}",host, port);
@@ -32,7 +32,15 @@ async fn main() -> std::io::Result<()> {
                 db_connection:Mutex::new(establish_connection())
             });
 
-            App::new().app_data(app_state.clone())
+            App::new()
+            .app_data(app_state)
+            .wrap(SessionMiddleware::builder(CookieSessionStore::default(), secret_key.clone())
+                .cookie_secure(false)
+                .cookie_http_only(true)
+                .cookie_same_site(SameSite::Lax)
+                .build()
+            )
+           
                 .service(fs::Files::new("/static", "./static").show_files_listing())
                 .route("/", web::get().to(home_page))
                 .route("/login", web::get().to(login_page))
