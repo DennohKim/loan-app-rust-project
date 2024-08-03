@@ -19,3 +19,44 @@ pub struct Loans {
     pub monthly_payment: i32,
     pub created_at: chrono::NaiveDateTime,
 }
+
+
+#[derive(Queryable, Selectable, Insertable, Serialize, Deserialize)]
+#[diesel(table_name = crate::schema::loans)]
+#[diesel(check_for_backend(diesel::pg::Pg))]
+
+pub struct NewLoan {
+    pub user_id: i32,
+    // pub term_months: i32,
+    pub amount: BigDecimal,
+    // pub status: String,
+    pub interest_rate: BigDecimal,
+    pub start_date: chrono::NaiveDate,
+    // pub end_date: chrono::NaiveDate,
+    pub monthly_payment: i32,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct NewLoanForm {
+    pub user_id: i32,
+    pub term_months: i32,
+    pub amount: BigDecimal,
+    pub status: String,
+    pub interest_rate: BigDecimal,
+    pub start_date: chrono::NaiveDate,
+    pub end_date: chrono::NaiveDate,
+    pub monthly_payment: i32,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct UpdateLoanForm {
+    pub id: i32,
+    pub user_id: i32,
+    pub term_months: i32,
+    pub amount: BigDecimal,
+    pub status: String,
+    pub interest_rate: BigDecimal,
+    pub start_date: chrono::NaiveDate,
+    pub end_date: chrono::NaiveDate,
+    pub monthly_payment: i32,
+}

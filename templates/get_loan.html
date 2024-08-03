@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/table.css">
+
+
+</head>
+<body>
+    <div class="admin-panel clearfix">
+      
+        <div class="slidebar">
+          <div class="logo">
+            <a href=""></a>
+          </div>
+          <ul>
+            <li><a href="/dashboard" id="targeted">dashboard</a></li>
+            <li><a href="/get_loan">loans</a></li>
+            <!-- <li><a href="#users">media</a></li> -->
+       
+          </ul>
+        </div>
+        <div class="main">
+          <ul class="topbar clearfix">
+            {% if users.is_some() %}
+            {% for user in users.unwrap() %}
+       
+            <li><a href="#">Welcome, {{users.username}}</a></li>
+            <li><a href="#">log out</a></li>
+            {% endfor %}
+            {% endif %}
+    
+          </ul>
+          <div class="mainContent clearfix">
+            <div id="dashboard">
+              <form method="post" action="/get_loan" >
+                <!-- TODO: Add form validation inputs -->
+                <div class="login-grid-2-cols">
+                  <input type="text" name="username" id="username" placeholder="username" />
+                  <input type="text" name="first_name" id="first_name" placeholder="first name" />
+                  <input type="text" name="last_name" id="last_name" placeholder="last name" />
+                </div>
+      
+                <div class="login-grid-2-cols">
+                  <input type="email" name="email" id="email" placeholder="email" />
+                  <input type="text" name="address" id="address" placeholder="physical address" />
+                  <input type="date" id="date_of_birth"  name="date_of_birth" />
+                </div>
+      
+                <div class="login-grid-2-cols">
+                  <input type="password" name="password" id="password" placeholder="password" />
+                  <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm password" />
+                </div>
+      
+                <button type="submit">Take loan</button>
+              
+              </form>
+           
+           </div>
+       
+         </div>
+      </div>
+</body>
+</html>

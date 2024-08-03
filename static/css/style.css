@@ -30,6 +30,7 @@ header {
     z-index: 100;
 }
 
+
 .banner {
     color: var(--light-01);
     font-size: 14px;
@@ -828,4 +829,5 @@ body {
     -moz-osx-font-smoothing: grayscale;
     font-family: "Roboto", sans-serif;
 }
+
 

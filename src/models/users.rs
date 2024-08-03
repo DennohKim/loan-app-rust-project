@@ -44,3 +44,9 @@ pub struct NewUser {
     pub address: String,
 
 }
+
+#[derive(Deserialize, Serialize)]
+pub struct LoginForm {
+    pub  username: String,
+    pub  password: String,
+}
