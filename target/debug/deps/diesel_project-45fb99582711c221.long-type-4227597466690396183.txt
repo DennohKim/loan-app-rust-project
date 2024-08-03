@@ -1,0 +1,1 @@
+(Integer, Integer, Integer, diesel::sql_types::Text, diesel::sql_types::Numeric, diesel::sql_types::Numeric, diesel::sql_types::Date, diesel::sql_types::Date, Integer, diesel::sql_types::Timestamp)

@@ -1,0 +1,1 @@
+cargo:rustc-env=MIME_TYPES_GENERATED_PATH=/Users/chizaa/Documents/rust-projects/diesel/diesel-project/target/debug/build/mime_guess-a62963bcb6435e53/out/mime_types_generated.rs
